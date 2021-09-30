@@ -1,0 +1,2 @@
+#!/bin/bash
+gcc -E -Wall -W error -Wextra -pedantic -std=gnu89  $CFILE -o c
