@@ -17,7 +17,7 @@ int main(void)
 				for (d4 = 48 ; d4 <= 57; d4++)
 				{
 					/*regla de exclusion para numero de 3 y 4 digitos respectivamente*/
-					if ((d2 > d4 && d3 == 48) || (d1 > d3 || (d2 >= d4 && d2 != 0)))
+					if ((d2 > d4 && d3 == 48) || (d1 > d3 || (d2 >= d4 && d1 + d2 + d3+ d4 != 48 * 4 + 1)))
 						continue;
 					/*regla para el uso de comas y exclusión del primer numbero(00 00)*/
 					if (d1 + d2 + d3 + d4 > (4 * 48 + 1) || d3 > 48)
