@@ -1,10 +1,10 @@
-#include <_putchar.c>
+#include "main.h"
 /**
- * main - prints 10 times the alphabet, in lowercase, without standard library
+ * print_alphabet_x10 - prints 10 times the alphabet
  *
  * Return: Always 0(succes)
  */
-int main(void)
+int print_alphabet_x10(void)
 {
 	int codeAscii, cont;
 
