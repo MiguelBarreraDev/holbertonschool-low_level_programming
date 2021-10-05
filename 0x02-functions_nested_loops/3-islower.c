@@ -14,6 +14,5 @@ int _islower(int c)
 		band = 1;
 	else
 		band = 0;
-	_putchar('\n');
 	return (band);
 }
