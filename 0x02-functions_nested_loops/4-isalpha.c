@@ -10,7 +10,7 @@ int _isalpha(int c)
 {
 	int band;
 
-	if (c >= 97 && c <= 122 || c >= 65 && c <= 90)
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90))
 		band = 1;
 	else
 		band = 0;
