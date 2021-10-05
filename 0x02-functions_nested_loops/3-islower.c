@@ -2,11 +2,18 @@
 /**
  * _islower -  checks for lowercase character
  *
- * Return : Always 0(succes)
+ * @c: Is in ASCII code the character
+ *
+ * Return: 1 for lowecarse character. 0 for the rest.
  */
 int _islower(int c)
 {
-	if (c >= 97 && c <=122 )
-		return 1;
-	return 0;
+	int band;
+
+	if (c >= 97 && c <= 122)
+		band = 1;
+	else
+		band = 0;
+	_putchar('\n');
+	return (band);
 }
