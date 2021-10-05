@@ -8,7 +8,7 @@
  */
 int print_last_digit(int n)
 {
-	int lastDigit;
+	int lastDigit = 0;
 
 	lastDigit = n % 10;
 	lastDigit += 48;
