@@ -27,18 +27,18 @@ void print_times_table(int n)
 				_putchar(((product / 10) % 10) + 48);
 				_putchar((product % 10) + 48);
 			}
-			if (num2 != 9)
+			if (num2 != n)
 				_putchar(',');
 			if (n < 10)
 			{
 				_putchar(' ');
 				_putchar(' ');
 				_putchar(' ');
-			}
+		}
 			if (product >= 10 && product < 100)
 			{
 				_putchar(' ');
-				_putchar(' ')
+				_putchar(' ');
 			}
 			if (product >= 100)
 				_putchar(' ');
