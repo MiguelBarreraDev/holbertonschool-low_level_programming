@@ -29,7 +29,7 @@ void print_times_table(int n)
 			}
 			if (num2 != n)
 				_putchar(',');
-			if (n < 10)
+			if (product < 10)
 			{
 				_putchar(' ');
 				_putchar(' ');
