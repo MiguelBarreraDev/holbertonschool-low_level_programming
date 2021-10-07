@@ -7,14 +7,14 @@
  */
 int main(void)
 {
-	long int n_terms, fiboCurrent, fiboPrevious, fiboResult, cont, sumTotal;
+	int  max_value, fiboCurrent, fiboPrevious, fiboResult, cont, sumTotal;
 
-	n_terms = 4000000;
+	max_value = 4000000;
 	fiboCurrent = 1;
 	fiboPrevious = 0;
 	cont = 0;
 	sumTotal = 0;
-	while (cont <= n_terms)
+	while (fiboResult < max_value)
 	{
 		fiboResult = fiboPrevious + fiboCurrent;
 		fiboPrevious = fiboCurrent;
@@ -23,7 +23,7 @@ int main(void)
 			sumTotal += fiboResult;
 		cont++;
 	}
-	printf("%ld", sumTotal);
+	printf("%d", sumTotal);
 	putchar(10);
 	return (0);
 }
