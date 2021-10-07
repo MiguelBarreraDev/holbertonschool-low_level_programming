@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	unsigned long int n_terms, fiboCurrent, fiboPrevious, fiboResult, cont;
+	unsigned long long n_terms, fiboCurrent, fiboPrevious, fiboResult, cont;
 
 	n_terms = 98;
 	fiboCurrent = 1;
@@ -17,7 +17,7 @@ int main(void)
 		fiboResult = fiboPrevious + fiboCurrent;
 		fiboPrevious = fiboCurrent;
 		fiboCurrent = fiboResult;
-		printf("%lu", fiboResult);
+		printf("%llu", fiboResult);
 		if (cont == (n_terms - 1))
 			break;
 		printf(", ");
