@@ -7,12 +7,13 @@
  */
 int main(void)
 {
-	long int n_terms, fiboCurrent, fiboPrevious, fiboResult;
+	long int n_terms, fiboCurrent, fiboPrevious, fiboResult, cont;
 
 	n_terms = 50;
 	fiboCurrent = 1;
 	fiboPrevious = 0;
-	for (int cont = 0; cont < n_terms; cont++)
+	cont = 0;
+	while ( cont < n_terms)
 	{
 		fiboResult = fiboPrevious + fiboCurrent;
 		fiboPrevious = fiboCurrent;
@@ -21,6 +22,7 @@ int main(void)
 		if (cont == (n_terms - 1))
 			break;
 		printf(", ");
+		cont++;
 	}
 	putchar(10);
 	return (0);
