@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	unsigned long n_terms, fiboCurrent, fiboPrevious, fiboResult;
+	unsigned long fiboCurrent, fiboPrevious, fiboResult;
 	int cont;
 
 	fiboCurrent = 2;
@@ -22,11 +22,6 @@ int main(void)
 		if (cont < 98)
 			printf(", ");
 		cont++;
-	}
-
-	while (cont < 98)
-	{
-
 	}
 	putchar(10);
 	return (0);
