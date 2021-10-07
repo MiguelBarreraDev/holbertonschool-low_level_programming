@@ -13,7 +13,7 @@ int main(void)
 	fiboCurrent = 1;
 	fiboPrevious = 0;
 	cont = 0;
-	while ( cont < n_terms)
+	while (cont < n_terms)
 	{
 		fiboResult = fiboPrevious + fiboCurrent;
 		fiboPrevious = fiboCurrent;
