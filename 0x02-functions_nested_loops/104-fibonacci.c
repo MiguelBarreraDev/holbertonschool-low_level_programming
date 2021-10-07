@@ -6,22 +6,27 @@
  */
 int main(void)
 {
-	unsigned long n_terms, fiboCurrent, fiboPrevious, fiboResult, cont;
+	unsigned long n_terms, fiboCurrent, fiboPrevious, fiboResult;
+	int cont;
 
-	n_terms = 98;
-	fiboCurrent = 1;
-	fiboPrevious = 0;
-	cont = 0;
-	while (cont < n_terms)
+	fiboCurrent = 2;
+	fiboPrevious = 1;
+	cont = 3;
+	printf("1, 2, ");
+	while (cont <= 98)
 	{
 		fiboResult = fiboPrevious + fiboCurrent;
 		fiboPrevious = fiboCurrent;
 		fiboCurrent = fiboResult;
 		printf("%lu", fiboResult);
-		if (cont == (n_terms - 1))
-			break;
-		printf(", ");
+		if (cont < 98)
+			printf(", ");
 		cont++;
+	}
+
+	while (cont < 98)
+	{
+
 	}
 	putchar(10);
 	return (0);
