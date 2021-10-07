@@ -5,45 +5,45 @@
  */
 void print_times_table(int n)
 {
-	int num1, num2, product;
+	int factor1, factor2, product;
 
 	if (n <= 15 && n >= 0)
 	{
-	for (num1 = 0; num1 <= n; num1++)
-	{
-		for (num2 = 0; num2 <= n; num2++)
+		for (factor1 = 0; factor1 <= n; factor1++)
 		{
-			product = num1 * num2;
-			if (product < 10)
-				_putchar(product + 48);
-			if (product < 100 && product >= 10)
+			for (factor2 = 0; factor2 <= n; factor2++)
 			{
-				_putchar((product / 10) + 48);
-				_putchar((product % 10) + 48);
+				product = factor1 * factor2;
+				if (product < 10)
+					_putchar(product + 48);
+				if (product < 100 && product >= 10)
+				{
+					_putchar((product / 10) + 48);
+					_putchar((product % 10) + 48);
+				}
+				if (product >= 100)
+				{
+					_putchar((product / 100) + 48);
+					_putchar(((product / 10) % 10) + 48);
+					_putchar((product % 10) + 48);
+				}
+				if (factor2 != n)
+					_putchar(',');
+				if (product < 10)
+				{
+					_putchar(' ');
+					_putchar(' ');
+					_putchar(' ');
+				}
+				if (product >= 10 && product < 100)
+				{
+					_putchar(' ');
+					_putchar(' ');
+				}
+				if (product >= 100)
+					_putchar(' ');
 			}
-			if (product >= 100)
-			{
-				_putchar((product / 100) + 48);
-				_putchar(((product / 10) % 10) + 48);
-				_putchar((product % 10) + 48);
-			}
-			if (num2 != n)
-				_putchar(',');
-			if (product < 10)
-			{
-				_putchar(' ');
-				_putchar(' ');
-				_putchar(' ');
+			_putchar('\n');
 		}
-			if (product >= 10 && product < 100)
-			{
-				_putchar(' ');
-				_putchar(' ');
-			}
-			if (product >= 100)
-				_putchar(' ');
-		}
-		_putchar('\n');
-	}
 	}
 }
