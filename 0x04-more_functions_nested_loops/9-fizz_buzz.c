@@ -11,13 +11,15 @@ int main(void)
 	for (num = 1; num <= 100; num++)
 	{
 		if (num % 3 == 0 && num % 5 != 0)
-			printf("%s ", "Fizz");
+			printf("%s", "Fizz");
 		else if (num % 5 == 0 && num % 3 != 0)
-			printf("%s ", "Buzz");
+			printf("%s", "Buzz");
 		else if (num % 15 == 0)
-			printf("%s ", "FizzBuzz");
+			printf("%s", "FizzBuzz");
 		else
-			printf("%d ", num);
+			printf("%d", num);
+		if (num < 100)
+			putchar(' ');
 	}
 	putchar(10);
 	return (0);
