@@ -7,31 +7,16 @@
 
 void print_number(int n)
 {
-	int idNegative, digit, result;
+	unsigned int num = n;
 
-	idNegative = 0;
-	result = 0;
 	if (n < 0)
 	{
-		n *= -1;
-		idNegative = 1;
-	}
-	else if (n == 0)
-	{
-		_putchar('0');
-	}
-	while (n > 0)
-	{
-		digit = n % 10;
-		n /= 10;
-		result = result * 10 + digit;
-	}
-	if (idNegative == 1)
 		_putchar('-');
-	while (result > 0)
-	{
-		digit = result % 10;
-		result /= 10;
-		_putchar((unsigned int)digit + '0');
+		num = -num;
 	}
+
+	if ((num / 10) > 0)
+		print_number(num / 10);
+
+	_putchar((num % 10) + '0');
 }
