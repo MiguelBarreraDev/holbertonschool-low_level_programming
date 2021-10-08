@@ -6,11 +6,15 @@
  */
 int main(void)
 {
-	char c;
-
-    c = 'A';
-    printf("%c: %d\n", c, _isupper(c));
-    c = 'a';
-    printf("%c: %d\n", c, _isupper(c));
+	print_number(568);
+    _putchar('\n');
+    print_number(40223);
+    _putchar('\n');
+    print_number(1024);
+    _putchar('\n');
+    print_number(0);
+    _putchar('\n');
+    print_number(-9845);
+    _putchar('\n');
     return (0);
 }
