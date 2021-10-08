@@ -7,7 +7,7 @@
 
 void print_number(int n)
 {
-	int idNegative, digit, result;
+	unsigned int idNegative, digit, result;
 
 	idNegative = 0;
 	result = 0;
