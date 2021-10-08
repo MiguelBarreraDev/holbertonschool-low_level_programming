@@ -32,6 +32,6 @@ void print_number(int n)
 	{
 		digit = result % 10;
 		result /= 10;
-		_putchar(digit + '0');
+		_putchar((unsigned int)digit + '0');
 	}
 }
