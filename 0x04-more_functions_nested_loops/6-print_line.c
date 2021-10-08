@@ -1,5 +1,5 @@
 #include "main.h"
-/*
+/**
  * print_line - draws a straight line in the terminal
  * @n: the number of times the character'_'
  */
