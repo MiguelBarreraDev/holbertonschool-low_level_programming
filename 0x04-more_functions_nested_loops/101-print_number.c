@@ -7,7 +7,7 @@
 
 void print_number(int n)
 {
-	unsigned int idNegative, digit, result;
+	int idNegative, digit, result;
 
 	idNegative = 0;
 	result = 0;
@@ -32,6 +32,6 @@ void print_number(int n)
 	{
 		digit = result % 10;
 		result /= 10;
-		_putchar(digit + '0');
+		_putchar((unsigned int)digit + '0');
 	}
 }
