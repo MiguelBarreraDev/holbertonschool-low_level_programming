@@ -13,7 +13,7 @@ void puts_half(char *str)
 	while (*(save++))
 		cont++;
 	ctn = cont / 2;
-	posHalf = (cont % 2 == 0)? ctn : ctn + 1 ;
+	posHalf = (cont % 2 == 0) ? ctn : ctn + 1;
 	str += posHalf;
 	for (pos = 0; pos < posHalf; pos++)
 	{
