@@ -12,12 +12,9 @@ void print_array(int *a, int n)
 
 	for (pos = 0; pos < n; pos++)
 	{
-		printf("%i", *a);
+		printf("%i", *(a++));
 		if (pos < (n - 1))
-		{
 			printf(", ");
-			a++;
-		}
 	}
-	_putchar('\n');
+	printf("\n");
 }
