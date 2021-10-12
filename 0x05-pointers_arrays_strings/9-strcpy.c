@@ -9,14 +9,16 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	char *save = src;
+	char *save, *saveInitialPos;
 
+	save = src;
+	saveInitialPos = src;
 	while (*(save++))
 	{
 		*dest = *src;
-		_putchar(*dest);
 		dest++;
 		src++;
 	}
+	dest = saveInitialPos;
 	return (dest);
 }
