@@ -23,7 +23,10 @@ void rev_string(char *s)
 	}
 	while (saveCont--)
 	{
-		*(s++) = *(ns - (saveCont + 1));
+		*s = *(ns - (saveCont + 1));
+		if (saveCont == 0)
+			break;
+		s++;
 	}
 	_putchar(10);
 }
