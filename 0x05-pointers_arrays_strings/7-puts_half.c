@@ -7,13 +7,13 @@
  */
 void puts_half(char *str)
 {
-	int cont = 0, pos, posHalf = 0, ctn;
+	long int cont = 0, pos, posHalf = 0, ctn;
 	char *save = str;
 
 	while (*(save++))
 		cont++;
 	ctn = cont / 2;
-	posHalf = (cont % 2 == 0)? ctn : ctn +1 ;
+	posHalf = (cont % 2 == 0)? ctn : ctn + 1 ;
 	str += posHalf;
 	for (pos = 0; pos < posHalf; pos++)
 	{
