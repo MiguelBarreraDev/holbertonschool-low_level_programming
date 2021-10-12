@@ -6,15 +6,9 @@
  */
 int main(void)
 {
-	print_number(568);
-    _putchar('\n');
-    print_number(40223);
-    _putchar('\n');
-    print_number(1024);
-    _putchar('\n');
-    print_number(0);
-    _putchar('\n');
-    print_number(-9845);
-    _putchar('\n');
-    return (0);
+	print_diagonal(0);
+    print_diagonal(2);
+    print_diagonal(10);
+    print_diagonal(-4);
+   	 return (0);
 }
