@@ -9,10 +9,8 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	char *save, *saveInitialPos;
+	char *save = src, *saveInitialPos = dest;
 
-	save = src;
-	saveInitialPos = src;
 	while (*(save++))
 	{
 		*dest = *src;
