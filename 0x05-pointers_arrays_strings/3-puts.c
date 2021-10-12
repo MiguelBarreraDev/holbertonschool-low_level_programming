@@ -10,8 +10,8 @@ void _puts(char *str)
 	int cont = 0;
 	char *save = str;
 
-	while(*(save++))
+	while (*(save++))
 		cont++;
-	write(1,str,cont);
+	write(1, str, cont);
 	_putchar(10);
 }
