@@ -10,10 +10,12 @@
 char *_strcpy(char *dest, char *src)
 {
 	char *save = src, *saveInitialPos = dest;
-	save--;
-	while (*(++save))
+
+	while (*(save++))
 	{
 		*dest = *src;
+		if (*save == '\0')
+			break;
 		dest++;
 		src++;
 	}
