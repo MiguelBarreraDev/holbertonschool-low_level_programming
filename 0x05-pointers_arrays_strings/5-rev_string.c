@@ -28,5 +28,4 @@ void rev_string(char *s)
 			break;
 		s++;
 	}
-	_putchar(10);
 }
