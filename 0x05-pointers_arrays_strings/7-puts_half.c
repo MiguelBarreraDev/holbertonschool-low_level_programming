@@ -14,9 +14,12 @@ void puts_half(char *str)
 		cont++;
 	posHalf = cont / 2;
 	str += posHalf;
-	for (pos = 1; pos < posHalf; pos++)
+	for (pos = 0; pos < posHalf; pos++)
 	{
-		_putchar(*(str++));
+		_putchar(*str);
+		if (pos == (posHalf - 1))
+			break;
+		str++;
 	}
 	_putchar(10);
 }
