@@ -13,10 +13,10 @@ void puts_half(char *str)
 	while (*(save++))
 		cont++;
 	posHalf = cont / 2;
-	str += posHalf;
+	str += (posHalf - 1);
 	for (pos = cont; pos > 0; pos -= 2)
 	{
-		_putchar(*(str++));
+		_putchar(*(++str));
 	}
 	_putchar(10);
 }
