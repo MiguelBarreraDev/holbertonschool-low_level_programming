@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 /**
  * _strncpy - function
  *
@@ -9,16 +8,21 @@
  *
  * Return: dest
  */
-char *_strncpy(char *dest, char *src, __attribute__((unused)) int n)
+char *_strncpy(char *dest, char *src, int n)
 {
 	int pos = 0;
 
-	while (src[pos])
+	while (src[pos] != '\0' && pos < n)
 	{
-		if (pos >= n)
-			break;
 		dest[pos] = src[pos];
 		pos++;
 	}
+
+	while (pos < n)
+	{
+		dest[pos] = '\0';
+		pos++;
+	}
+
 	return (dest);
 }
