@@ -15,7 +15,7 @@ char *_strncpy(char *dest, char *src, __attribute__((unused)) int n)
 
 	while (src[pos])
 	{
-		if (pos > n)
+		if (pos >= n)
 			break;
 		dest[pos] = src[pos];
 		pos++;
