@@ -19,7 +19,7 @@ char *_strncat(char *dest, char *src, int n)
 		dest[s1] = src[s2];
 		s1++;
 		s2++;
-		if (src[s2] >= n)
+		if (s2 >= n)
 			break;
 	}
 
