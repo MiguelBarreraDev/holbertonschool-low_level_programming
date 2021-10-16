@@ -29,7 +29,7 @@ char *cap_string(char *str)
 			else
 				i++;
 		}
-		if ((str[pos] <= 122 && str[pos] >= 97 && check == 1) || pos == 0)
+		if ((str[pos] <= 122 && str[pos] >= 97) && (check == 1 || pos == 0))
 			str[pos] -= 32;
 		pos++;
 	}
