@@ -16,24 +16,16 @@ char *leet(char *str)
 		getC = str[pos];
 		if (getC >= 65 && getC <= 90)
 			getC += 32;
-		switch (getC)
-		{
-			case 'a':
-				str[pos] = '4';
-				break;
-			case 'e':
-				str[pos] = '3';
-				break;
-			case 'o':
-				str[pos] = '0';
-				break;
-			case 't':
-				str[pos] = '7';
-				break;
-			case 'l':
-				str[pos] = '1';
-				break;
-		}
+		if (getC == 'a')
+			str[pos] = '4';
+		else if (getC == 'e')
+			str[pos] = '3';
+		else if (getC == 'o')
+			str[pos] = '0';
+		else if (getC == 't')
+			str[pos] = '7';
+		else if (getC == 'l')
+			str[pos] = '1';
 		pos++;
 	}
 	return (str);
