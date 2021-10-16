@@ -8,24 +8,21 @@
  */
 char *leet(char *str)
 {
-	int pos = 0;
+	int pos = 0, cont = 0; /* a e o t l */
+	char encode[5] = "43071";
+	char valueEntry[5] = "aeotl";
 	char getC;
 
 	while (str[pos])
 	{
+		cont = 0;
 		getC = str[pos];
-		if (getC >= 65 && getC <= 90)
-			getC += 32;
-		if (getC == 'a')
-			str[pos] = '4';
-		else if (getC == 'e')
-			str[pos] = '3';
-		else if (getC == 'o')
-			str[pos] = '0';
-		else if (getC == 't')
-			str[pos] = '7';
-		else if (getC == 'l')
-			str[pos] = '1';
+		while (valueEntry[cont])
+		{
+			if (getC == valueEntry[cont] || (getC + 32) == valueEntry[cont])
+				str[pos] = encode[cont];
+			cont++;
+		}
 		pos++;
 	}
 	return (str);
