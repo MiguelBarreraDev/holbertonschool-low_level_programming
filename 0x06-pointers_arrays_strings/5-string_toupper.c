@@ -2,18 +2,20 @@
 /**
  * string_toupper - changes all lowercase yo uppercase
  *
+ * @str: string to modify
+ *
  * Return: pointer to char;
  */
 char *string_toupper(char *str)
 {
-	char *save_pos = str;
+	int pos = 0;
 
-	while (*str)
+	while (str[pos])
 	{
-		if (*str >= 97 && *str <= 122)
-			*str -= 32;
-		str++;
+		if (str[pos] >= 97 && str[pos] <= 122)
+			str[pos] -= 32;
+
+		pos++;
 	}
-	str = save_pos;
 	return (str);
 }
