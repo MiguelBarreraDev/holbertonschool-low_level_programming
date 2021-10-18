@@ -1,0 +1,7 @@
+*.[a-z]
+*.[0-9]
+*~*
+test.c
+_putchar.c
+a.out
+deltmp
