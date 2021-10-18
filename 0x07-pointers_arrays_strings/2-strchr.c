@@ -1,12 +1,11 @@
 #include "main.h"
 /**
- * _memcpy - function that fills memory with a constant byte.
+ * _strchr - function that locates a character in a string.
  *
  * @s: pointer
  * @c: character to locate
- * @n: bytes number
  *
- * Return: pointer dest
+ * Return: pointer
  */
 char *_strchr(char *s, char c)
 {
@@ -15,7 +14,7 @@ char *_strchr(char *s, char c)
 	while (*(s + pos))
 	{
 		if (*(s + pos) == c)
-			return(s + pos);
+			return (s + pos);
 		pos++;
 	}
 	return ("NULL");
