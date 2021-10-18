@@ -9,22 +9,24 @@
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int pos_sb = 0, pos_s = 0, largest_pos = 0;
+	unsigned int pos, n_Bts = 0, band = 0;
 
-	while (accept[pos_sb])
-	{
-		pos_s = 0;
-		while (s[pos_s])
+	do {
+		for (pos = 0; accept[pos]; pos++)
 		{
-			if (accept[pos_sb] == s[pos_s])
+			if (*s == accept[pos])
 			{
-				if (largest_pos < pos_s)
-					largest_pos = pos_s;
+				n_Bts++;
+				band = 1;
 				break;
 			}
-			pos_s++;
+			else
+				band = 0;
+
 		}
-		pos_sb++;
-	}
-	return (largest_pos + 1);
+		if (band == 0)
+			break;
+	} while (*s++);
+
+	return (n_Bts);
 }
