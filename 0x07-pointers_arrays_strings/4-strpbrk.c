@@ -18,7 +18,7 @@ char *_strpbrk(char *s, char *accept)
 			if (*s == accept[pos])
 				return (s);
 		}
-	} while (*s++);
+	} while (*(++s));
 
-	return (s - 1);
+	return (s);
 }
