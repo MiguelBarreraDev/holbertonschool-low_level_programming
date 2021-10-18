@@ -27,6 +27,5 @@ unsigned int _strspn(char *s, char *accept)
 		if (band == 0)
 			break;
 	} while (*s++);
-
 	return (n_Bts);
 }
