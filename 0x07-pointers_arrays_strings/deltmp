@@ -1,6 +1,0 @@
-#!/bin/bash
-
-find . -type f -name *.[a-z] -delete
-find . -type f -name *.[0-9] -delete
-find . -type f -name *~* -delete
-find . -type f -name *swp* -delete
