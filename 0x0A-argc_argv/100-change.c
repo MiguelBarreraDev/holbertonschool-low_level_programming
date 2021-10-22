@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 /**
@@ -11,7 +12,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int money, change = 0, cont = 0;
+	int money, cont = 0;
 
 	if (argc != 2)
 	{

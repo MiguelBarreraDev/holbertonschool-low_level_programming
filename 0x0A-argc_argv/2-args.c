@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdio.h>
 /**
  * main - program that prints all arguments it receives
@@ -7,7 +8,7 @@
  *
  *Return: Always 0(succes)
  */
-int main(int argc, char *argv[])
+int main(__attribute__((unused))int argc, char *argv[])
 {
 	while(*argv)
 		printf("%s\n", (*argv++));
