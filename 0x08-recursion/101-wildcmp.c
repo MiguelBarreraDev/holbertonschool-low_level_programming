@@ -1,8 +1,6 @@
-#include <stdarg.h>
-#include <stdio.h>
 #include "main.h"
 char *del_char_special(char *s);
-char *ignore_char(char *s, char c, char *);
+char *ignore_char(char *s, char *c, char *);
 /**
  * wildcmp -  compares two strings
  *
@@ -18,7 +16,8 @@ int wildcmp(char *s1, char *s2)
 	if (*s2 == '*')
 	{
 		s2 = del_char_special(s2);
-		s1 = ignore_char(s1, *s2, save);
+
+		s1 = ignore_char(s1, s2, save);
 	}
 	if (*s1 != *s2)
 		return (0);
@@ -38,7 +37,6 @@ char *del_char_special(char *s)
 	if (*s != '*')
 		return (s);
 	return (del_char_special(s + 1));
-
 }
 /**
  * ignore_char - ignore optional character
@@ -49,9 +47,11 @@ char *del_char_special(char *s)
  *
  * Return: pointer to the next position to the optional characters
  */
-char *ignore_char(char *s, char c, char *save)
+char *ignore_char(char *s, char *c, char *save)
 {
-	if (*s == c)
+	if (*s == *c && *(c + 1) == '*')
+		return (s);
+	if (*s == *c && *(c + 1) != '*')
 	{
 		save = s;
 	}
