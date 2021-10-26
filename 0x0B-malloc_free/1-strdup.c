@@ -13,6 +13,9 @@ char *_strdup(char *str)
 	unsigned int pos, size = 0;
 	char *new_str;
 
+	if (str == 0)
+		return (str);
+
 	while (*(str + size))
 	{
 		size++;
@@ -21,7 +24,7 @@ char *_strdup(char *str)
 	size += 1;
 	new_str = malloc(sizeof(char) * size);
 
-	if (str == 0 || new_str == 0)
+	if (new_str == 0)
 		return ('\0');
 
 	for (pos = 0; pos < size; pos++)
