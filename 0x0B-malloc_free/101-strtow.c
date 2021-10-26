@@ -121,6 +121,6 @@ char *replace_space(char *str, int n_words)
 			*(new_str + posX++) = ' ';
 
 	}
-	*(new_str + posX - 1) = '\0';
+	*(new_str + posX) = '\0';
 	return (new_str);
 }
