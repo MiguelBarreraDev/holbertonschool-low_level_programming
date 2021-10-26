@@ -18,18 +18,27 @@ int **alloc_grid(int width, int height)
 	/*------------------ Reserving memory ---------------------*/
 	arr = (int **)malloc(sizeof(int *) * row);
 	if (arr == 0)
+	{
+		free(arr);
 		return ('\0');
+	}
 	for (row = 0; row < height; row++)
 		*(arr + row) = (int *)malloc(sizeof(int) * col);
-
 	if (*arr == 0)
+	{
+		free(arr);
+		for (row = 0; row < height; row++)
+			free(*(arr + pos));
 		return ('\0');
+	}
 	/*---------------------------------------------------------*/
 	for (row = 0; row < height; row++)
 	{
 		for (col = 0; col < width; col++)
 			*(*(arr + row) + col) = 0;
 	}
+
+
 
 	return (arr);
 }
