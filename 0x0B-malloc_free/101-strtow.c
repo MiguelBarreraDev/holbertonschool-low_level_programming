@@ -1,7 +1,6 @@
 #include "main.h"
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 char *replace_space(char *);
 int number_words(char *);
 /**
