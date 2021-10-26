@@ -1,7 +1,8 @@
 #include "main.h"
 #include <string.h>
 #include <stdlib.h>
-char *replace_space(char *, int);
+#include <stdio.h>
+char *replace_space(char *);
 int number_words(char *);
 /**
  * strtow - function that splits a string into words
@@ -12,18 +13,19 @@ int number_words(char *);
  */
 char **strtow(char *str)
 {
-	unsigned int pos = 0, posX = 0, row = 0, n_words = 0, len_word = 0, size_all = 0;
-	char **collection, *f_str;
+	unsigned int pos = 0, posX = 0, row = 0, n_words = 0, len_word = 0;
+	char **collection, *f_str = str;
 
 	if (str == 0)
 		return ('\0');
 
-	n_words = number_words(str);
-	f_str = replace_space(str, n_words);
+	n_words = number_words(f_str);
 
-	if (strlen(f_str) == 0)
+	f_str = replace_space(f_str);
+	if (*f_str == '\0')
 		return ('\0');
-	size_all = sizeof(char *) * (n_words + 1);
+	f_str = str;
+
 	collection = (char **)malloc(sizeof(char *) * (n_words + 1));
 	if (collection == 0)
 	{
@@ -32,15 +34,15 @@ char **strtow(char *str)
 	}
 	for (row = 0; row < n_words; row++)
 	{
+		if (*f_str == ' ')
+			f_str = replace_space(f_str);
 		len_word = 0;
-		while (*(f_str + pos) != ' ' && pos < strlen(f_str))
+		while (*(f_str) != ' ')
 		{
 			len_word++;
-			pos++;
+			f_str++;
 		}
-		pos++;
 		collection[row] = (char *)malloc((sizeof(char) * len_word));
-		size_all += (sizeof(char) * len_word);
 		if (collection[row] == 0)
 		{
 			for (row = 0; row < n_words; row++)
@@ -54,17 +56,17 @@ char **strtow(char *str)
 	pos = 0;
 	for (row = 0; row < n_words; row++)
 	{
-		while (*(f_str + pos) != ' ' && pos < strlen(f_str))
+		if (*str == ' ')
+			str = replace_space(str);
+		while (*str != ' ')
 		{
-			collection[row][posX] = f_str[pos];
-			pos++;
+			collection[row][posX] = str[pos];
+			str++;
 			posX++;
 		}
 		collection[row][posX] = '\0';
 		posX = 0;
-		pos++;
 	};
-	free(f_str);
 	return (collection);
 }
 /**
@@ -100,31 +102,12 @@ int number_words(char *str)
  * replace_space - function that replaces whitespace at the string
  *
  * @str: pointer to string
- * @n_words: number of words
  *
  * Return: formatted string
  */
-char *replace_space(char *str, int n_words)
+char *replace_space(char *str)
 {
-	unsigned int pos, size = 0, posX = 0;
-	char *new_str;
-
-	for (pos = 0; pos < strlen(str); pos++)
-	{
-		if (str[pos] != ' ')
-			size++;
-	}
-	size += n_words;
-	new_str = malloc(sizeof(char) * size);
-
-	for (pos = 0; pos < strlen(str); pos++)
-	{
-		if (str[pos] != ' ')
-			*(new_str + posX++) = str[pos];
-		if (str[pos] != ' ' && str[pos + 1] == ' ')
-			*(new_str + posX++) = ' ';
-
-	}
-	*(new_str + posX) = '\0';
-	return (new_str);
+	if (*str != ' ')
+		return (str);
+	return (replace_space(str + 1));
 }
