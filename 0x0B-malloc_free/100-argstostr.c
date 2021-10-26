@@ -21,12 +21,14 @@ char *argstostr(int ac, char **av)
 	{
 		size += strlen(av[row]);
 	}
-	size += (ac - 1);
+	size += ac + 1;
 
 	str = malloc(sizeof(char) * size);
 	if (str == 0)
+	{
+		free(str);
 		return ('\0');
-
+	}
 	for (row = 0; row < ac; row++)
 	{
 		strcat(str, av[row]);
