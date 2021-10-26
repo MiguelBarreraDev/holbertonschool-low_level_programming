@@ -24,7 +24,7 @@ char **strtow(char *str)
 	if (strlen(f_str) == 0)
 		return ('\0');
 
-	collection = (char **)malloc(sizeof(char *) * n_words + 1);
+	collection = (char **)malloc(sizeof(char *) * (n_words + 1));
 	if (collection == 0)
 	{
 		free(collection);
@@ -39,7 +39,7 @@ char **strtow(char *str)
 			pos++;
 		}
 		pos++;
-		collection[row] = (char *)malloc((sizeof(char) * len_word) + 1);
+		collection[row] = (char *)malloc((sizeof(char) * len_word));
 		if (collection[row] == 0)
 		{
 			for (row = 0; row < n_words; row++)
