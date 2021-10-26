@@ -19,8 +19,8 @@ char **strtow(char *str)
 		return ('\0');
 
 	n_words = number_words(f_str);
-
 	f_str = replace_space(f_str);
+
 	if (*f_str == '\0')
 		return ('\0');
 	f_str = str;
