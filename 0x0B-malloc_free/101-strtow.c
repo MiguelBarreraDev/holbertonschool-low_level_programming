@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+
 char *replace_space(char *);
 int number_words(char *);
 
@@ -32,7 +33,7 @@ char **strtow(char *str)
 		if (*f_str == ' ')
 			f_str = replace_space(f_str);
 		len_word = 0;
-		while (*(f_str) != ' ')
+		while (*(f_str) != ' ' && *(f_str))
 		{
 			len_word++;
 			f_str++;
@@ -40,7 +41,7 @@ char **strtow(char *str)
 		collection[row] = malloc(sizeof(char) * (len_word + 1));
 		if (collection[row] == NULL)
 		{
-			for (row = 0; row < n_words; row++)
+			for (; (int)row >= 0; row--)
 				free(collection[row]);
 			free(collection);
 		}
