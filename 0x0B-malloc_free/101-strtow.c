@@ -1,7 +1,7 @@
 #include "main.h"
 #include <string.h>
 #include <stdlib.h>
-
+#include <stdio.h>
 char *replace_space(char *);
 int number_words(char *);
 
@@ -40,6 +40,7 @@ char **strtow(char *str)
 			len_word++;
 			f_str++;
 		}
+		printf("\n-> %d\n", len_word);
 		collection[row] = malloc((sizeof(char) * len_word - 1));
 		if (collection[row] == NULL)
 		{
