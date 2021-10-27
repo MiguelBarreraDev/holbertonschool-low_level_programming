@@ -42,7 +42,7 @@ char **strtow(char *str)
 			len_word++;
 			f_str++;
 		}
-		collection[row] = (char *)malloc((sizeof(char) * len_word - 1));
+		collection[row] = malloc((sizeof(char) * len_word - 1));
 		if (collection[row] == 0)
 		{
 			for (row = 0; row < n_words; row++)
