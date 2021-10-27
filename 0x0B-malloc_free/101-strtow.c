@@ -1,7 +1,5 @@
 #include "main.h"
-#include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 char *replace_space(char *);
 int number_words(char *);
 
@@ -23,7 +21,6 @@ char **strtow(char *str)
 	n_words = number_words(f_str);
 	if (n_words == 0)
 		return ('\0');
-
 	collection = malloc(sizeof(char *) * (n_words + 1));
 	if (collection == NULL)
 	{
@@ -40,8 +37,7 @@ char **strtow(char *str)
 			len_word++;
 			f_str++;
 		}
-		printf("\n-> %d\n", len_word);
-		collection[row] = malloc((sizeof(char) * len_word - 1));
+		collection[row] = malloc(sizeof(char) * (len_word + 1));
 		if (collection[row] == NULL)
 		{
 			for (row = 0; row < n_words; row++)
@@ -50,7 +46,6 @@ char **strtow(char *str)
 		}
 
 	}
-
 	/* assign values to array */
 	for (row = 0; row < n_words; row++)
 	{
@@ -79,7 +74,7 @@ int number_words(char *str)
 {
 	unsigned int pos, n = 0;
 
-	for (pos = 0; pos < strlen(str); pos++)
+	for (pos = 0; *(str + pos); pos++)
 	{
 		if (pos > 0)
 		{
