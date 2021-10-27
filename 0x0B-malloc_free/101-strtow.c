@@ -17,17 +17,15 @@ char **strtow(char *str)
 	unsigned int pos = 0, posX = 0, row = 0, n_words = 0, len_word = 0;
 	char **collection, *f_str = str;
 
-	if (str == 0)
+	if (str == NULL)
 		return ('\0');
 
 	n_words = number_words(f_str);
-	f_str = replace_space(f_str);
-
-	if (*f_str == '\0')
+	if (n_words == 0)
 		return ('\0');
-	f_str = str;
-	collection = malloc(sizeof(char *) * (n_words) + 1);
-	if (collection == 0)
+
+	collection = malloc(sizeof(char *) * (n_words + 1));
+	if (collection == NULL)
 	{
 		free(collection);
 		return ('\0');
@@ -42,8 +40,8 @@ char **strtow(char *str)
 			len_word++;
 			f_str++;
 		}
-		collection[row] = malloc((sizeof(char) * len_word - 1));
-		if (collection[row] == 0)
+		collection[row] = malloc((sizeof(char) * len_word - 2));
+		if (collection[row] == NULL)
 		{
 			for (row = 0; row < n_words; row++)
 				free(collection[row]);
@@ -63,8 +61,10 @@ char **strtow(char *str)
 			str++;
 			posX++;
 		}
+		collection[row][posX] = '\0';
 		posX = 0;
 	}
+	collection[n_words] = NULL;
 	return (collection);
 }
 /**
