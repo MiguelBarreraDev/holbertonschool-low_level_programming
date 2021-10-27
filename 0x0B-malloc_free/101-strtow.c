@@ -40,7 +40,7 @@ char **strtow(char *str)
 			len_word++;
 			f_str++;
 		}
-		collection[row] = malloc((sizeof(char) * len_word - 2));
+		collection[row] = malloc((sizeof(char) * len_word - 1));
 		if (collection[row] == NULL)
 		{
 			for (row = 0; row < n_words; row++)
@@ -64,7 +64,7 @@ char **strtow(char *str)
 		collection[row][posX] = '\0';
 		posX = 0;
 	}
-	collection[n_words] = NULL;
+	collection[row] = NULL;
 	return (collection);
 }
 /**
