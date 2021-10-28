@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "main.h"
 #include <stdlib.h>
 #include <string.h>
@@ -30,9 +29,8 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		n = len_s2;
 	}
 
-	size = len_s1 + n + 1;
+	size = len_s1 + n;
 	str = malloc(size);
-	printf("\n->%d \n", size);
 
 	if (str == NULL)
 		return (NULL);
