@@ -12,7 +12,7 @@
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *n = malloc(sizeof(dog_t));
+	struct dog *n = malloc(sizeof(struct dog));
 
 	n->name = malloc(strlen(name) + 1);
 	n->owner = malloc(strlen(owner) + 1);
