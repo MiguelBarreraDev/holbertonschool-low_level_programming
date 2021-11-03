@@ -11,31 +11,34 @@
  */
 int main(int argc, char **argv)
 {
-	int (*ptr_Op)(int, int);
-	int res = 0, i = 0;
-	/* - - - -- - - Restriction - - - - - - - */
+	int num1, num2, res;
+	char *op;
+
 	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);
 	}
 
-	if (get_op_func(argv[2]) == NULL)
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[3]);
+	op = argv[2];
+
+	if (get_op_func(op) == NULL || op[1] != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
 
-	if ((*argv[2] == '/' || *argv[2] == '%') && *argv[3] == '0')
+	if ((*op == '/' || *op == '%') && atoi(argv[3]) == 0)
 	{
 		printf("Error\n");
 		exit(100);
 	}
-	/* -  - ---- ---  - - -- - - - -- - -- - -- -- - */
-	ptr_Op = get_op_func(argv[2]);
-	res = ptr_Op(atoi(argv[1]), atoi(argv[3]));
 
-	printf("-> %d\n", res);
+	res = get_op_func(op)(num1, num2);
+
+	printf("%d\n", res);
 
 	return (0);
 }
