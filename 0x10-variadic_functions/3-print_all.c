@@ -14,7 +14,7 @@ void print_all(const char * const format, ...)
 	va_list ptr;
 
 	va_start(ptr, format);
-	while (*(format + index_for))
+	while (format != NULL && *(format + index_for))
 	{
 		letter_for = *(format + index_for);
 		switch (letter_for)
