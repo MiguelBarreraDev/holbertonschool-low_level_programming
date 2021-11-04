@@ -30,10 +30,8 @@ void print_all(const char * const format, ...)
 				break;
 			case 's':
 				save_str = va_arg(ptr, char *);
-				if (save_str == NULL)
-					printf("(nil)");
-				else
-					printf("%s", save_str);
+				save_str = (save_str == NULL) ? "(nil)" : save_str;
+				printf("%s", save_str);
 				break;
 			default:
 				letter_for = '0';
