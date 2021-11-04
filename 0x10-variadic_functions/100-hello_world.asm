@@ -9,8 +9,7 @@ main:
 	mov edx, message_length
 	int 0x80
 
-	mov eax, 0x1
-	mov ebx, 0
+	mov eax, 0
 	int 0x80
 
 section .data:
