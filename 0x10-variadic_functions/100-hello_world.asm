@@ -14,5 +14,5 @@ main:
 	int 0x80
 
 section .data:
-	message: db "Hello ,world", 10
+	message: db "Hello ,world",10
 	message_length equ $-message
