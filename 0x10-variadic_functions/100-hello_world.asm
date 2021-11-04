@@ -1,8 +1,8 @@
-global _start
+global main
 
 section .text:
 
-_start:
+main:
 	mov eax, 0x4
 	mov ebx, 1
 	mov ecx, message
