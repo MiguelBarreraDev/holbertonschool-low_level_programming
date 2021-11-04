@@ -1,6 +1,6 @@
-section .text:
+global main
 
-	global main
+section .text:
 
 main:
 	mov eax, 0x4
@@ -9,7 +9,8 @@ main:
 	mov edx, message_length
 	int 0x80
 
-	mov eax, 0
+	mov eax, 0x1
+	mov ebx, 0
 	int 0x80
 
 section .data:
