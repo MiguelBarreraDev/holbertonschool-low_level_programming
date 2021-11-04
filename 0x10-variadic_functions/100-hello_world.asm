@@ -1,6 +1,6 @@
-global main
-
 section .text:
+
+	global main
 
 main:
 	mov eax, 0x4
