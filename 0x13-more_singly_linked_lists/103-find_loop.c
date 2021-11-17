@@ -10,8 +10,13 @@
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *ptr_t = (void *)head, *ptr_h = (void *)head;
+	listint_t *ptr_t, *ptr_h;
 
+	if (!head)
+		return (NULL);
+
+	ptr_t = head,
+	ptr_h = head;
 	while (ptr_h->next != NULL && ptr_h->next->next != NULL)
 	{
 		ptr_t = ptr_t->next;
