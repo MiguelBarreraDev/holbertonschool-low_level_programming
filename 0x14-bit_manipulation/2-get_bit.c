@@ -1,5 +1,4 @@
 #include "main.h"
-uint _pow(uint base, uint exponent);
 /**
  * get_bit - function that returns the value
  * of a bit at a given index
