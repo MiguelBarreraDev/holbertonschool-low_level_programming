@@ -8,7 +8,7 @@ uint _pow(uint base, uint exponent);
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int mask = 2147483648; /*10000000000000000000000000000000*/
+	unsigned int mask = 32768; /* 1000 0000 0000 0000 */
 	int band = 0;
 
 	while (mask > 0)
