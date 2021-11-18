@@ -8,20 +8,8 @@ uint _pow(uint base, uint exponent);
  */
 void print_binary(unsigned long int n)
 {
-	unsigned int mask = 32768; /* 1000 0000 0000 0000 */
-	int band = 0;
+	if (n > 1)
+		print_binary(n >> 1);
 
-	while (mask > 0)
-	{
-		if (((mask & n) == 0) && (mask == 0x01 || band != 0))
-		{
-			_putchar(48);
-		}
-		else if ((mask & n) != 0)
-		{
-			_putchar(49);
-			band = 1;
-		}
-		mask = mask >> 1;
-	}
+	_putchar((n & 1) + '0');
 }
