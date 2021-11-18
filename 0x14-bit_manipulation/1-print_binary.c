@@ -8,7 +8,7 @@ uint _pow(uint base, uint exponent);
  */
 void print_binary(unsigned long int n)
 {
-	uint exp1 = 0, exp2 = 0, pows_2 = 0, save;
+	unsigned long int exp1 = 0, exp2 = 0, pows_2 = 0, save;
 
 	if (n == 0)
 	{
