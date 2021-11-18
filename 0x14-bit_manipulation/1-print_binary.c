@@ -55,6 +55,5 @@ uint _pow(uint base, uint exponent)
 {
 	if (exponent == 0)
 		return (1);
-
 	return (base * _pow(base, exponent - 1));
 }
