@@ -8,52 +8,20 @@ uint _pow(uint base, uint exponent);
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int exp1 = 0, exp2 = 0, pows_2 = 0, save;
+	unsigned long int mask = 2147483648; /*10000000000000000000000000000000*/
+	int band = 0;
 
-	if (n == 0)
+	while (mask > 0)
 	{
-		_putchar(48);
-		return;
-	}
-	while (n > 0)
-	{
-		pows_2 = 1;
-		exp1 = 1;
-		exp2 = 1;
-		save = 0;
-		while (pows_2 <= n)
-		{
-			save = pows_2;
-			pows_2 = _pow(2, exp1);
-			exp1++;
-		}
-		_putchar(49);
-		n -= save;
-		pows_2 = 1;
-		while (pows_2 <= n)
-		{
-			pows_2 = _pow(2, exp2);
-			exp2++;
-		}
-		exp1 -= exp2;
-		while (exp1 > 1)
+		if (((mask & n) == 0) && (mask == 0x01 || band != 0))
 		{
 			_putchar(48);
-			exp1--;
 		}
+		else if ((mask & n) != 0)
+		{
+			_putchar(49);
+			band = 1;
+		}
+		mask = mask >> 1;
 	}
-}
-/**
- * _pow - Gets the result of raising base^exponent
- *
- * @base: self-describing
- * @exponent: self-describing
- *
- * Return: a unsigned int
- */
-uint _pow(uint base, uint exponent)
-{
-	if (exponent == 0)
-		return (1);
-	return (base * _pow(base, exponent - 1));
 }
