@@ -29,14 +29,14 @@ void print_binary(unsigned long int n)
 		}
 		_putchar(49);
 		n -= save;
-		pows_2 = 0;
+		pows_2 = 1;
 		while (pows_2 <= n)
 		{
 			pows_2 = _pow(2, exp2);
 			exp2++;
 		}
 		exp1 -= exp2;
-		while (exp1 > 0)
+		while (exp1 > 1)
 		{
 			_putchar(48);
 			exp1--;
