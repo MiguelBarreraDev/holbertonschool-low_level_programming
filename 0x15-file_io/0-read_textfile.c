@@ -28,20 +28,18 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	n_bytes = read(fd_o, text, letters);
 	if (n_bytes == 0)
 	{
-		close(fd_o);
 		free(text);
+		close(fd_o);
 		return (0);
 	}
 
-	count = write(1, text, n_bytes);
+	count = write(STDOUT_FILENO, text, n_bytes);
 	if (count == -1)
 	{
-		close(n_bytes)
-		close(fd_o);
 		free(text);
+		close(fd_o);
 		return (0);
 	}
-	close(n_bytes);
 	close(fd_o);
 	return (count);
 }
