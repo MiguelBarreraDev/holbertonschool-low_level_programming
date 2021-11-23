@@ -57,18 +57,23 @@ int main(int argc, char **argv)
 char *read_content(char *file)
 {
 	char *buffer;
-	int fd, len, success_close;
+	int fd, len = 1024, success_close, count = 2;
 
 	fd = open(file, O_RDONLY);
-
-	if (fd == -1)
+	if (fd < 0)
 		get_error(98, file);
+
 	buffer = malloc(sizeof(char) * 1024);
 	if (!buffer)
 		return (NULL);
-	len = read(fd, buffer, 1024);
-
-	if (len == -1)
+	while (len == 1024)
+	{
+		len = read(fd, buffer, 1024);
+		if (len == 1024)
+			buffer = realloc(buffer, 1024 * count);
+		count++;
+	}
+	if (len < 0)
 	{
 		free(buffer);
 		success_close = close(fd);
@@ -91,15 +96,14 @@ void write_to_dest(char *file, char *buffer)
 	int fd, len, success_close;
 
 	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0664);
-
-	if (fd == -1)
+	if (fd < 0)
 	{
 		free(buffer);
 		get_error(99, file);
 	}
-	len = write(fd, buffer, strlen(buffer));
 
-	if (len == -1)
+	len = write(fd, buffer, strlen(buffer));
+	if (len < 0)
 	{
 		free(buffer);
 		success_close = close(fd);
