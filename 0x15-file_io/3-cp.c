@@ -58,6 +58,13 @@ int main(int argc, char **argv)
 		len = read_content(argv[1], fd_f, &buffer);
 		write_to_dest(argv[2], fd_t, &buffer, len);
 	}
+
+	free(buffer);
+	if (close(fd_f) < 0)
+		get_error(100, fd_f)
+	if (close(fd_t) < 0)
+		get_error(100, fd_t)
+
 	return (0);
 }
 /**
