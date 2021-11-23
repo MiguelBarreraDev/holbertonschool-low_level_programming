@@ -22,8 +22,8 @@
 /*------------------------------------*/
 
 void get_error(int, ...);
-char *read_content(char *);
-void write_to_dest(char *file, char *content);
+int read_content(char *, int, char **);
+void write_to_dest(char *file, int, char **content, int);
 
 /**
  * main - program that copies the content of a file to another file
@@ -35,85 +35,70 @@ void write_to_dest(char *file, char *content);
  */
 int main(int argc, char **argv)
 {
-	char *file_from = argv[1], *file_to = argv[2];
 	char *buffer;
+	int fd_f, fd_t, len = 1024;
 
 	if (argc != 3)
 		get_error(97);
 
-	buffer = read_content(file_from);
+	fd_f = open(argv[1], O_RDONLY);
+	if (fd_f < 0)
+		get_error(98, argv[1]);
 
-	write_to_dest(file_to, buffer);
+	fd_t = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0644);
+	if (fd_t < 0)
+		get_error(99, argv[2]);
 
+	buffer = malloc(sizeof(char) * 1024);
+	if (!buffer)
+		return (-1);
+
+	while (len == 1024)
+	{
+		len = read_content(argv[1], fd_f, &buffer);
+		write_to_dest(argv[2], fd_t, &buffer, len);
+	}
 	return (0);
 }
 /**
  * read_content - Read from source file
  *
  * @file: source file
+ * @buffer: pointer
+ * @fd: file descriptor
  *
- * Return: content
+ * Return: n_bytes
  */
-char *read_content(char *file)
+int read_content(char *file, int fd, char **buffer)
 {
-	char *buffer;
-	int fd, len = 1024, success_close, count = 2;
+	int len;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		get_error(98, file);
-
-	buffer = malloc(sizeof(char) * 1024);
-	if (!buffer)
-		return (NULL);
-	while (len == 1024)
-	{
-		len = read(fd, buffer, 1024);
-		if (len == 1024)
-			buffer = realloc(buffer, 1024 * count);
-		count++;
-	}
+	len = read(fd, *buffer, 1024);
 	if (len < 0)
 	{
-		free(buffer);
-		success_close = close(fd);
-		if (success_close == -1)
-			get_error(100, fd);
+		free(*buffer);
 		get_error(98, file);
 	}
-
-	close(fd);
-	return (buffer);
+	return (len);
 }
 /**
  * write_to_dest - write to destination file
  *
  * @file: destination file
- * @buffer: content
+ * @buffer: pointer
+ * @fd: file descriptor
+ * @len: n_bytes
  */
-void write_to_dest(char *file, char *buffer)
+void write_to_dest(char *file, int fd, char **buffer, int len)
 {
-	int fd, len, success_close;
+	int len_w;
 
-	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (fd < 0)
+	len_w = write(fd, *buffer, len);
+	if (len_w < 0)
 	{
-		free(buffer);
+		free(*buffer);
 		get_error(99, file);
 	}
-
-	len = write(fd, buffer, strlen(buffer));
-	if (len < 0)
-	{
-		free(buffer);
-		success_close = close(fd);
-		if (success_close == -1)
-			get_error(100, fd);
-		get_error(99, file);
-	}
-
-	close(fd);
-	free(buffer);
 }
 /**
  * get_error - Displays the error correponding
