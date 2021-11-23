@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 	if (fd_f < 0)
 		get_error(98, argv[1]);
 
-	fd_t = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0644);
+	fd_t = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
 	if (fd_t < 0)
 		get_error(99, argv[2]);
 
