@@ -1,12 +1,4 @@
 #include "main.h"
-#include <stdarg.h>
-
-#define EX_ERR_97 "Usage: cp file_from file_to"
-#define EX_ERR_98 "Error: Can't read from file"
-#define EX_ERR_99 "Error: Can't write to"
-#define EX_ERR_100 "Error: Can't close fd FD_VALUE"
-
-void get_error(int, ...);
 /**
  * main - program that copies the content of a file to another file
  *
@@ -17,13 +9,8 @@ void get_error(int, ...);
  */
 int main(int argc, char **argv)
 {
-	char *buff_from;
-	char *file_from, *file_to;
-	int len_buff_f;
-	int fd_ffrom, fd_fto, n_bytes_fto;
-
-	file_from = argv[1];
-	file_to = argv[2];
+	char *file_from = argv[1], *file_to = argv[2], *buff_from = NULL;
+	int fd_ffrom, fd_fto, n_bytes_fto, len_buff_f;
 
 	if (argc != 3)
 		get_error(97);
@@ -31,11 +18,9 @@ int main(int argc, char **argv)
 	fd_ffrom = open(file_from, O_RDONLY);
 	if (fd_ffrom == -1)
 		get_error(98, file_from);
-
 	buff_from = malloc(sizeof(char) * 1024);
 	if (!buff_from)
 		return (-1);
-
 	len_buff_f = read(fd_ffrom, buff_from, 1024);
 	if (len_buff_f == -1)
 	{
@@ -44,31 +29,25 @@ int main(int argc, char **argv)
 			get_error(100, fd_ffrom);
 		get_error(98, file_from);
 	}
+	close(fd_ffrom);
 
-	fd_fto = open(file_to, O_CREAT | O_RDWR | O_TRUNC, 0664);
+	fd_fto = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd_fto == -1)
 	{
 		free(buff_from);
-		if (close(fd_ffrom) == -1)
-			get_error(100, fd_fto);
 		get_error(99, file_to);
 	}
-
 	n_bytes_fto = write(fd_fto, buff_from, len_buff_f);
 	if (n_bytes_fto == -1)
 	{
 		free(buff_from);
-		if (close(fd_ffrom) == -1)
-			get_error(100, fd_ffrom);
 		if (close(fd_fto) == -1)
 			get_error(100, fd_fto);
 		get_error(99, file_to);
 	}
 
 	free(buff_from);
-	close(fd_ffrom);
 	close(fd_fto);
-
 	return (0);
 }
 /**
