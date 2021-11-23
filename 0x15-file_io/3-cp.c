@@ -1,4 +1,8 @@
 #include "main.h"
+
+char *read_content(char *);
+void write_to_dest(char *file, char *content);
+
 /**
  * main - program that copies the content of a file to another file
  *
@@ -9,46 +13,75 @@
  */
 int main(int argc, char **argv)
 {
-	char *file_from = argv[1], *file_to = argv[2], *buff_from = NULL;
-	int fd_ffrom, fd_fto, n_bytes_fto, len_buff_f;
+	char *file_from = argv[1], *file_to = argv[2];
+	char *buffer;
 
 	if (argc != 3)
 		get_error(97);
 
-	fd_ffrom = open(file_from, O_RDONLY);
-	if (fd_ffrom == -1)
-		get_error(98, file_from);
-	buff_from = malloc(sizeof(char) * 1024);
-	if (!buff_from)
-		return (-1);
-	len_buff_f = read(fd_ffrom, buff_from, 1024);
-	if (len_buff_f == -1)
-	{
-		free(buff_from);
-		if (close(fd_ffrom) == -1)
-			get_error(100, fd_ffrom);
-		get_error(98, file_from);
-	}
-	close(fd_ffrom);
+	buffer = read_content(file_from);
 
-	fd_fto = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (fd_fto == -1)
-	{
-		free(buff_from);
-		get_error(99, file_to);
-	}
-	n_bytes_fto = write(fd_fto, buff_from, len_buff_f);
-	if (n_bytes_fto == -1)
-	{
-		free(buff_from);
-		if (close(fd_fto) == -1)
-			get_error(100, fd_fto);
-		get_error(99, file_to);
-	}
+	write_to_dest(file_to, buffer);
 
-	free(buff_from);
-	close(fd_fto);
 	return (0);
+}
+/**
+ * read_content - Read from source file
+ *
+ * @file: source file
+ *
+ * Return: content
+ */
+char *read_content(char *file)
+{
+	char *buffer;
+	int fd, len;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		get_error(98, file);
+	buffer = malloc(sizeof(char) * 1024);
+	if (!buffer)
+		return (NULL);
+	len = read(fd, buffer, 1024);
+	if (len == -1)
+	{
+		free(buffer);
+		if (close(fd) == -1)
+			get_error(100, fd);
+		get_error(98, file);
+	}
+
+	close(fd);
+	return (buffer);
+}
+/**
+ * write_to_dest - write to destination file
+ *
+ * @file: destination file
+ * @buffer: content
+ */
+void write_to_dest(char *file, char *buffer)
+{
+	int fd, len;
+
+	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (fd == -1)
+	{
+		free(buffer);
+		get_error(99, file);
+	}
+	len = write(fd, buffer, strlen(buffer));
+	if (len == -1)
+	{
+		free(buffer);
+		if (close(fd) == -1)
+			get_error(100, fd);
+		get_error(99, file);
+	}
+
+	close(fd);
+	free(buffer);
 }
 /**
  * get_error - Displays the error correponding
@@ -56,7 +89,6 @@ int main(int argc, char **argv)
  *
  * @ec: exit code
  */
-
 void get_error(int ec, ...)
 {
 	va_list msg;
@@ -85,4 +117,3 @@ void get_error(int ec, ...)
 	}
 	va_end(msg);
 }
-
