@@ -136,7 +136,7 @@ void get_error(int ec, ...)
 	}
 	else if (100)
 	{
-		dprintf(STD_E, "%s %s\n", EX_ERR_100, va_arg(msg, char *));
+		dprintf(STD_E, "%s %s\n", EX_ERR_100, va_arg(msg, int));
 		exit(100);
 	}
 	va_end(msg);
