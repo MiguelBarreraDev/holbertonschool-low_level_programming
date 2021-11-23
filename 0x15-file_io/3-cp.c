@@ -1,5 +1,27 @@
-#include "main.h"
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <string.h>
+#include <stdarg.h>
 
+/*-------------- Macros ----------*/
+#ifndef MACROS_H
+#define MACROS_H
+
+#define STD_E STDERR_FILENO
+#define STD_O STDOUT_FILENO
+#define STD_I STDON_FILENO
+
+#define EX_ERR_97 "Usage: cp file_from file_to"
+#define EX_ERR_98 "Error: Can't read from file"
+#define EX_ERR_99 "Error: Can't write to"
+#define EX_ERR_100 "Error: Can't close fd FD_VALUE"
+
+#endif
+/*------------------------------------*/
+
+void get_error(int, ...);
 char *read_content(char *);
 void write_to_dest(char *file, char *content);
 
@@ -35,19 +57,22 @@ int main(int argc, char **argv)
 char *read_content(char *file)
 {
 	char *buffer;
-	int fd, len;
+	int fd, len, success_close;
 
 	fd = open(file, O_RDONLY);
+
 	if (fd == -1)
 		get_error(98, file);
 	buffer = malloc(sizeof(char) * 1024);
 	if (!buffer)
 		return (NULL);
 	len = read(fd, buffer, 1024);
+
 	if (len == -1)
 	{
 		free(buffer);
-		if (close(fd) == -1)
+		success_close = close(fd);
+		if (success_close == -1)
 			get_error(100, fd);
 		get_error(98, file);
 	}
@@ -63,19 +88,22 @@ char *read_content(char *file)
  */
 void write_to_dest(char *file, char *buffer)
 {
-	int fd, len;
+	int fd, len, success_close;
 
 	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+
 	if (fd == -1)
 	{
 		free(buffer);
 		get_error(99, file);
 	}
 	len = write(fd, buffer, strlen(buffer));
+
 	if (len == -1)
 	{
 		free(buffer);
-		if (close(fd) == -1)
+		success_close = close(fd);
+		if (success_close == -1)
 			get_error(100, fd);
 		get_error(99, file);
 	}
