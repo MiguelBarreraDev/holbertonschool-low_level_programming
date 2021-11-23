@@ -61,9 +61,9 @@ int main(int argc, char **argv)
 
 	free(buffer);
 	if (close(fd_f) < 0)
-		get_error(100, fd_f)
+		get_error(100, fd_f);
 	if (close(fd_t) < 0)
-		get_error(100, fd_t)
+		get_error(100, fd_t);
 
 	return (0);
 }
