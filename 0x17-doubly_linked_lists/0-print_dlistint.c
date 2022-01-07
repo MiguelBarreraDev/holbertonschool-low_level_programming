@@ -2,7 +2,7 @@
 /**
  * print_dlistint - Write a function that prints all the
  * elements of a dlistint_t list
- * @dlistint_t: pointer to double linked list
+ * @h: pointer to double linked list
  */
 size_t print_dlistint(const dlistint_t *h)
 {
