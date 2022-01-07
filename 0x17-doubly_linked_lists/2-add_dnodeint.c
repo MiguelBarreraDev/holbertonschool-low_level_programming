@@ -1,6 +1,6 @@
 #include "lists.h"
 /**
- * add_dnodeint : Write a function that adds a new node
+ * add_dnodeint - Write a function that adds a new node
  * at the beginning of a dlistint_t list
  * @head: double pointer to double linked list
  * @n: member for new node
