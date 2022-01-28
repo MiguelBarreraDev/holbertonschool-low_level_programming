@@ -282,15 +282,13 @@ void shash_table_delete(shash_table_t *ht)
  * space of a linked list
  * @head: Pointing to head of a linked list
  */
-void free_linked_list(shash_node_t **head)
+void free_linked_list(shash_node_t *head)
 {
-	shash_node_t *tmp = *head;
-
-	if (!tmp)
+	if (!head)
 		return;
-
-	free_linked_list(&(tmp->next));
-	free(tmp->key);
-	free(tmp->value);
-	free(tmp);
+	else if (head->next)
+		free_linked_list(head->next);
+	free(head->key);
+	free(head->value);
+	free(head)
 }
