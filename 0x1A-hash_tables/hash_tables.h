@@ -55,6 +55,6 @@ char *get_node(shash_node_t **head, const char *key);
 void print_list(shash_node_t *head);
 void shash_table_print_rev(const shash_table_t *ht);
 void sort_check(shash_table_t *ht, shash_node_t *node);
-void free_linked_list(shash_node_t *head)
+void free_linked_list(shash_node_t *head);
 
 #endif /* MAIN_H */
