@@ -12,10 +12,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int index = 0;
 	hash_node_t *node = NULL, **head = NULL;
 
-	if (!ht)
+	if (!ht || !value)
 		return (0);
 	/*====Get head  of the linked list====*/
-	if (strcmp(key, "") == 0)
+	if (!key || strcmp(key, "") == 0)
 		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
 	/* @head: pointer to linked list of the index in the hash table */
