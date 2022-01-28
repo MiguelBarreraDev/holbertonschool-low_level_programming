@@ -12,16 +12,21 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int index = 0;
 	hash_node_t *node = NULL, **head = NULL;
 
+	/*====Get head  of the linked list====*/
+	if (strcmp(key, "") == 0)
+		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
 	/* @head: pointer to linked list of the index in the hash table */
 	head = &(ht->array[index]);
+	/*====================================*/
 
 	node = malloc(sizeof(hash_node_t));
 	if (!node)
 		return (0);
 	node->key = (char *)key;
-	node->value = (char *)value;
+	node->value = strdup((char *)value);
 	node->next = NULL;
+
 	set_node(head, &node);
 
 	return (1);
@@ -41,23 +46,19 @@ void set_node(hash_node_t **head, hash_node_t **node)
 		free(node);
 		return;
 	}
-
-	if (!(*head))
+	if (*head)
 	{
-		*head = *node;
-		return;
-	}
-	if (tail->key == (*node)->key)
-	{
-		tail->value = (*node)->value;
-		free(*node);
-		return;
-	}
-	if (!(tail->next))
-	{
-		tail->next = *node;
-		return;
+		while (tail)
+		{
+			if (tail->key == (*node)->key)
+			{
+				tail->value = (*node)->value;
+				return;
+			}
+			tail = tail->next;
+		}
 	}
 
-	set_node(&(tail->next), node);
+	(*node)->next = *head;
+	*head = *node;
 }
