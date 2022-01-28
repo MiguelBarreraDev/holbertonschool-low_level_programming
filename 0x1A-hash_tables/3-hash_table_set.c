@@ -26,7 +26,18 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (!node)
 		return (0);
 	node->key = strdup((char *)key);
+	if (node->key == NULL)
+	{
+		free(node);
+		return (0);
+	}
 	node->value = strdup((char *)value);
+	if (node->value == NULL)
+	{
+		free(node->key);
+		free(node);
+		return (0);
+	}
 
 	set_node(head, &node);
 
@@ -43,8 +54,9 @@ void set_node(hash_node_t **head, hash_node_t **node)
 
 	if (!head)
 	{
+		free((*node)->key);
 		free((*node)->value);
-		free(node);
+		free(*node);
 		return;
 	}
 	if (*head)
@@ -53,7 +65,11 @@ void set_node(hash_node_t **head, hash_node_t **node)
 		{
 			if (strcmp(tail->key, (*node)->key) == 0)
 			{
-				tail->value = (*node)->value;
+				free(tail->value);
+				tail->value = strdup((*node)->value);
+				free((*node)->value);
+				free((*node)->key);
+				free(*node);
 				return;
 			}
 			tail = tail->next;
