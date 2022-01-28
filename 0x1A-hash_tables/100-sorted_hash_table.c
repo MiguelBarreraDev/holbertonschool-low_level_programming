@@ -10,26 +10,21 @@ shash_table_t *shash_table_create(unsigned long int size)
 {
 	shash_table_t *table = NULL;
 	unsigned long int index = 0;
-	shash_node_t **array = NULL;
 
 	table = malloc(sizeof(shash_table_t));
 	if (table == NULL)
 		return (NULL);
 
-	array = malloc(sizeof(shash_node_t *) * size);
+	table->size = size;
+	table->array = calloc(size, sizeof(shash_node_t *));
 	if (array == NULL)
 	{
 		free(table);
 		return (NULL);
 	}
 
-	for (index = 0; index < size; index++)
-		array[index] = NULL;
-
 	table->shead = NULL;
 	table->stail = NULL;
-	table->array = array;
-	table->size = size;
 
 	return (table);
 }
