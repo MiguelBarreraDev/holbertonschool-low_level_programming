@@ -290,5 +290,5 @@ void free_linked_list(shash_node_t *head)
 		free_linked_list(head->next);
 	free(head->key);
 	free(head->value);
-	free(head)
+	free(head);
 }
