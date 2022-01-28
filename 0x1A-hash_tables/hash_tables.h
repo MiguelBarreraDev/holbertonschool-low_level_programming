@@ -73,6 +73,17 @@ typedef struct shash_table_s
 	shash_node_t *stail;
 } shash_table_t;
 
+/* - C - */
+hash_table_t *hash_table_create(unsigned long int size);
+unsigned long int hash_djb2(const unsigned char *str);
+unsigned long int key_index(const unsigned char *key, unsigned long int size);
+int hash_table_set(hash_table_t *ht, const char *key, const char *value);
+void set_check(hash_node_t **head, hash_node_t **node);
+char *hash_table_get(const hash_table_t *ht, const char *key);
+void hash_table_print(const hash_table_t *ht);
+void hash_table_delete(hash_table_t *ht);
+
+/* - PHP - */
 shash_table_t *shash_table_create(unsigned long int size);
 unsigned long int hash_djb2(const unsigned char *str);
 unsigned long int key_index(const unsigned char *key, unsigned long int size);
@@ -80,11 +91,12 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value);
 char *hash_table_get(const shash_table_t *ht, const char *key);
 void shash_table_print(const shash_table_t *ht);
 void shash_table_delete(shash_table_t *ht);
+void shash_table_print_rev(const shash_table_t *ht);
+
 /* Aditional prototypes */
 void set_node(shash_node_t **head, shash_node_t **node);
 char *get_node(shash_node_t **head, const char *key);
 void print_list(shash_node_t *head);
-void shash_table_print_rev(const shash_table_t *ht);
 void sort_check(shash_table_t *ht, shash_node_t *node);
 void free_linked_list(shash_node_t *head);
 
