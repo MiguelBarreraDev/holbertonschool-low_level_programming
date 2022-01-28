@@ -239,19 +239,6 @@ void shash_table_print_rev(const shash_table_t *ht)
 	printf("}\n");
 }
 /**
- * print_list - Print linked list
- * @head: pointing to linked list
- */
-void print_list(shash_node_t *head)
-{
-	if (!head)
-		return;
-	printf("'%s': '%s'", head->key, head->value);
-	if (head->next)
-		printf(", ");
-	print_list(head->next);
-}
-/**
  * shash_table_delete - Function that deletes a hash table(memory free)
  * @ht: pointing to hash table
  */
