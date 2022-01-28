@@ -12,10 +12,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int index = 0;
 	hash_node_t *node = NULL, **head = NULL;
 
-	if (!ht || !value)
+	if (!ht || !value || !key)
 		return (0);
 	/*====Get head  of the linked list====*/
-	if (!key || strcmp(key, "") == 0)
+	if (strcmp(key, "") == 0)
 		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
 	/* @head: pointer to linked list of the index in the hash table */
@@ -25,7 +25,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	node = malloc(sizeof(hash_node_t));
 	if (!node)
 		return (0);
-	node->key = (char *)key;
+	node->key = strdup((char *)key);
+	if (node->key == NULL)
+		return (0);
 	node->value = strdup((char *)value);
 	if (node->value == NULL)
 		return (0);
