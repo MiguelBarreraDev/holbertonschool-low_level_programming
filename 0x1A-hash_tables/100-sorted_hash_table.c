@@ -221,25 +221,22 @@ void shash_table_print(const shash_table_t *ht)
  */
 void shash_table_print_rev(const shash_table_t *ht)
 {
-	shash_node_t **table = NULL, *head = NULL;
-	unsigned long int index = 0;
-	int flag = 0;
+	/*unsigned long int i = 0;*/
+	shash_node_t *ptr = NULL;
+	char flag = 0;
 
-	if (!ht)
+	if (ht == NULL)
 		return;
 
-	table = ht->array;
+	ptr = ht->stail;
 	printf("{");
-	for (index = ht->size; index > 0 ; index--)
+	while (ptr)
 	{
-		head = table[index - 1];
-		if (head)
-		{
-			if (flag == 1)
-				printf(", ");
-			print_list(head);
-			flag = 1;
-		}
+		if (flag == 1)
+			printf(", ");
+		printf("'%s': '%s'", ptr->key, ptr->value);
+		ptr = ptr->sprev;
+		flag = 1;
 	}
 	printf("}\n");
 }
