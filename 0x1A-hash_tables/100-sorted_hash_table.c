@@ -270,7 +270,7 @@ void shash_table_delete(shash_table_t *ht)
 	{
 		if (array[index] != NULL)
 		{
-			free_linked_list(&array[index]);
+			free_linked_list(array[index]);
 		}
 
 	}
