@@ -44,5 +44,6 @@ void hash_table_delete(hash_table_t *ht);
 void set_node(hash_node_t **head, hash_node_t **node);
 char *get_node(hash_node_t **head, const char *key);
 void print_list(hash_node_t *head);
+void free_linked_list(hash_node_t **head);
 
 #endif /* MAIN_H */
