@@ -11,6 +11,8 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	unsigned long int index = 0;
 	hash_node_t **head = NULL;
 
+	if (!ht)
+		return (NULL);
 	index = key_index((const unsigned char *)key, ht->size);
 	head = &(ht->array[index]);
 	/*printf("%lu {%s, %s}\n", index, head->key, head->value);*/
