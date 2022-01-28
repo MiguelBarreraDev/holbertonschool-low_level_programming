@@ -51,7 +51,7 @@ void set_node(hash_node_t **head, hash_node_t **node)
 	{
 		while (tail)
 		{
-			if (tail->key == (*node)->key)
+			if (strcmp(tail->key, (*node)->key) == 0)
 			{
 				tail->value = (*node)->value;
 				return;
