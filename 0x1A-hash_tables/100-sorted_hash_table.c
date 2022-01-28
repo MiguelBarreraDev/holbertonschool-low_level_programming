@@ -26,6 +26,8 @@ shash_table_t *shash_table_create(unsigned long int size)
 	for (index = 0; index < size; index++)
 		array[index] = NULL;
 
+	table->shead = NULL;
+	table->stail = NULL;
 	table->array = array;
 	table->size = size;
 
@@ -70,8 +72,9 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		free(node);
 		return (0);
 	}
-
 	set_node(head, &node);
+	node->snext = NULL;
+	node->sprev = NULL;
 	sort_check(ht, node);
 	return (1);
 }
