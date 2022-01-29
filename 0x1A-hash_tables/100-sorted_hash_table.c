@@ -71,7 +71,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 			free(node);
 			return (0);
 		}
-		node->next = NULL;
+		node->next = *head;
+		*head = node;
 		node->sprev = NULL;
 		node->snext = NULL;
 		sort_check(ht, node);
@@ -242,9 +243,7 @@ void shash_table_delete(shash_table_t *ht)
 	for (index = 0; index < ht->size; index++)
 	{
 		if (array[index] != NULL)
-		{
 			free_linked_list(array[index]);
-		}
 
 	}
 	free(ht->array);
