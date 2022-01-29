@@ -1,4 +1,5 @@
 #include "hash_tables.h"
+bool exist = false;
 /**
  * shash_table_create - function that creates a hash table
  * @size: the size of the array
@@ -70,7 +71,9 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	set_node(head, &node);
 	node->snext = NULL;
 	node->sprev = NULL;
-	sort_check(ht, node);
+	if (exist != true)
+		sort_check(ht, node);
+
 	return (1);
 }
 /**
@@ -97,15 +100,13 @@ void set_node(shash_node_t **head, shash_node_t **node)
 			{
 				free(tail->value);
 				tail->value = strdup((*node)->value);
-				free((*node)->value);
-				free((*node)->key);
-				free(*node);
 				return;
 			}
 			tail = tail->next;
+			exist = true;
 		}
 	}
-
+	exist = false;
 	(*node)->next = *head;
 	*head = *node;
 }
@@ -120,8 +121,9 @@ void sort_check(shash_table_t *ht, shash_node_t *node)
 {
 	shash_node_t *current = NULL, *tmp = NULL;
 
-	if (!(ht->shead) || strcmp(node->key, ht->shead->key) <= 0)
+	if (!(ht->shead) || strcmp(node->key, (ht->shead)->key) <= 0)
 	{
+
 		node->snext = ht->shead;
 		if (ht->shead)
 			ht->shead->sprev = node;
@@ -130,7 +132,6 @@ void sort_check(shash_table_t *ht, shash_node_t *node)
 		ht->shead = node;
 		return;
 	}
-
 	current = ht->shead;
 	tmp = ht->shead->snext;
 	while ((tmp) && strcmp(node->key, tmp->key) > 0)
