@@ -6,8 +6,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-extern bool exist;
-
 /* -- struct C -- */
 /**
  * struct hash_node_s - Node of a hash table
