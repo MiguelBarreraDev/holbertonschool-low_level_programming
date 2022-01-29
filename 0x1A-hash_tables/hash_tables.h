@@ -95,7 +95,7 @@ void shash_table_delete(shash_table_t *ht);
 void shash_table_print_rev(const shash_table_t *ht);
 
 /* Aditional prototypes */
-void set_node(shash_node_t **head, shash_node_t **node);
+shash_node_t *exist_node(shash_node_t **head, char *key);
 char *get_node(shash_node_t **head, const char *key);
 void print_list(shash_node_t *head);
 void sort_check(shash_table_t *ht, shash_node_t *node);
