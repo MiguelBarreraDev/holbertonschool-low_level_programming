@@ -1,5 +1,5 @@
 #include "hash_tables.h"
-bool exist = false;
+
 /**
  * shash_table_create - function that creates a hash table
  * @size: the size of the array
@@ -39,76 +39,63 @@ shash_table_t *shash_table_create(unsigned long int size)
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index = 0;
-	shash_node_t *node = NULL, **head = NULL;
+	shash_node_t *node = NULL, **head = NULL, *node_change = NULL;
 
-	if (!ht || !value || !key)
+	if (!ht || !value || !key || strcmp(key, "") == 0)
 		return (0);
-	/*====Get head  of the linked list====*/
-	if (strcmp(key, "") == 0)
-		return (0);
+	/*=@head: pointer to linked list of the index in the hash table=*/
 	index = key_index((const unsigned char *)key, ht->size);
-	/* @head: pointer to linked list of the index in the hash table */
 	head = &(ht->array[index]);
-	/*====================================*/
-
-	node = malloc(sizeof(shash_node_t));
-	if (!node)
-		return (0);
-	node->key = strdup((char *)key);
-	if (node->key == NULL)
+	/*==============================================================*/
+	node_change = exist_node(head, (char *)key);
+	if (node_change)
 	{
-		free(node);
-		return (0);
+		free(node_change->value);
+		node_change->value = strdup(value);
 	}
-	node->value = strdup((char *)value);
-	if (node->value == NULL)
+	else
 	{
-		free(node->key);
-		free(node);
-		return (0);
-	}
-	node->next = NULL;
-	set_node(head, &node);
-	node->snext = NULL;
-	node->sprev = NULL;
-	if (exist != true)
+		node = malloc(sizeof(shash_node_t));
+		if (!node)
+			return (0);
+		node->key = strdup((char *)key);
+		if (node->key == NULL)
+		{
+			free(node);
+			return (0);
+		}
+		node->value = strdup((char *)value);
+		if (node->value == NULL)
+		{
+			free(node->key);
+			free(node);
+			return (0);
+		}
+		node->next = NULL;
+		node->sprev = NULL;
+		node->snext = NULL;
 		sort_check(ht, node);
-
+	}
 	return (1);
 }
 /**
- * set_node - set_node
- * @head: pointing to hash_node in the hash table
- * @node: node to add in the index of the hash table
+ * exist_node - Validate exist of a key in the linked list
+ * @head: Pointing to hash_node in the hash table
+ * @key: Input key
+ *
+ * Return: 1 if exist key. 0 if does not exist
  */
-void set_node(shash_node_t **head, shash_node_t **node)
+shash_node_t *exist_node(shash_node_t **head, char *key)
 {
 	shash_node_t *tail = *head;
 
-	if (!head)
+	while (tail)
 	{
-		free((*node)->key);
-		free((*node)->value);
-		free(*node);
-		return;
+		if (strcmp(tail->key, key) == 0)
+			return (tail);
+		tail = tail->next;
 	}
-	if (*head)
-	{
-		while (tail)
-		{
-			if (strcmp(tail->key, (*node)->key) == 0)
-			{
-				free(tail->value);
-				tail->value = strdup((*node)->value);
-				return;
-			}
-			tail = tail->next;
-			exist = true;
-		}
-	}
-	exist = false;
-	(*node)->next = *head;
-	*head = *node;
+	return (NULL);
 }
 /**
  * sort_check - Adds an element to the hash table
