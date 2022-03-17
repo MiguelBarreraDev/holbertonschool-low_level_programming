@@ -1,3 +1,5 @@
+.PHONY: all school
+
 CC=gcc
 SRC=$(wildcard *.c)
 
