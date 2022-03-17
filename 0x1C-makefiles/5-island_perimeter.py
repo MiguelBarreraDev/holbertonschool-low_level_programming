@@ -1,8 +1,9 @@
-""" Use this module for get the island perimeter
+"""
+Use this module for get the island perimeter
 
-    Functions
-    ---------
-        insland_perimeter(grid)
+Functions
+---------
+     insland_perimeter(grid)
 """
 
 
