@@ -30,7 +30,9 @@ def island_perimeter(grid):
         for j, elm in enumerate(arr):
             if elm == 1 and\
                 (grid[i-1][j] == 1 or grid[i][j+1] == 1 or
-                 grid[i+1][j] == 1 or grid[i][j-1] == 1):
+                    grid[i+1][j] == 1 or grid[i][j-1] == 1) and\
+                    i != 0 and i != len(grid) - 1 and j != 0 and\
+                    j != len(arr) - 1:
                 perimeter += 4
                 if grid[i-1][j] == 1:
                     top = 1
