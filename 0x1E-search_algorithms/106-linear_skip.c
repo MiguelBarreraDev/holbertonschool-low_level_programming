@@ -21,6 +21,8 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 	{
 		head = tail;
 		tail = tail->express;
+		if (!tail)
+			break;
 		printf("Value checked at index [%ld] = [%d]\n", tail->index, tail->n);
 	}
 
