@@ -24,11 +24,11 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		if (!tail)
 		{
 			tail = head;
-			while(tail->next)
+			while (tail->next)
 				tail = tail->next;
-			if (tail != head->express)
-				break;
 		}
+		if (tail != head->express)
+			break;
 		printf("Value checked at index [%ld] = [%d]\n", tail->index, tail->n);
 	}
 
