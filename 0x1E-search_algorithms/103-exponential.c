@@ -77,7 +77,7 @@ int exponential_search(int *array, size_t size, int value)
 {
 	size_t pivot = 1, initial = 0, end = 0;
 
-	if (!array || size == 0 || value < array[0] || value > array[size])
+	if (!array || size == 0)
 		return (-1);
 
 	if (array[0] == value)
