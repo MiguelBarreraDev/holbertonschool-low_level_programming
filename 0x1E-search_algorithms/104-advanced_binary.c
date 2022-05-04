@@ -48,7 +48,7 @@ int my_binary(int *array, int initial, int end, int value)
 	print_array(array, initial, end);
 	if (array[pivot] == value && array[pivot - 1] != value)
 		return (pivot);
-	else if (array[pivot] == value)
+	else if (array[pivot] == value && array[pivot - 1] == value)
 		return (my_binary(array, initial, pivot, value));
 
 
