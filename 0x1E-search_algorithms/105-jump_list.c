@@ -13,27 +13,20 @@
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	int jump = sqrt(size), save = sqrt(size);
 	listint_t *tail = NULL, *head = NULL;
+	int jump = 0;
 
-	if (!list)
+	if (!list || size == 0)
 		return (NULL);
 
-	head = list;
-	tail = list;
+	jump = sqrt(size);
+	head = tail = list;
 
-	while (1)
+	while (!(tail->next) && tail->n < value)
 	{
 		head = tail;
-		while (tail->next && jump)
-		{
-			tail = tail->next;
-			jump--;
-		}
-		printf("Value checked at index [%ld] = [%d]\n", tail->index, tail->n);
-		if (tail->n > value || !tail->next)
-			break;
-		jump = save;
+		if (tail->index % jump == 0)
+			printf("Value checked at index [%ld] = [%d]\n", tail->index, tail->n);
 	}
 
 	printf("Value found between indexes [%ld] and [%ld]\n",
