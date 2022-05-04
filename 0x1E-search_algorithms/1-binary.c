@@ -20,6 +20,8 @@ int binary_search(int *array, size_t size, int value)
 
 	indice_a = 0;
 	indice_b = size - 1;
+	if (!array || size == 0)
+		return (-1);
 	if (array[indice_a] == value)
 		return (indice_a);
 	if (array[indice_b] == value)
