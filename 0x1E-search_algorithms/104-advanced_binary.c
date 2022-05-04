@@ -42,7 +42,7 @@ int my_binary(int *array, int initial, int end, int value)
 
 	pivot =  initial + ((end - initial) / 2);
 
-	if (initial >= end)
+	if (initial > end)
 		return (-1);
 
 	print_array(array, initial, end);
