@@ -50,4 +50,7 @@ int advanced_binary(int *array, size_t size, int value);
 listint_t *jump_list(listint_t *list, size_t size, int value);
 skiplist_t *linear_skip(skiplist_t *list, int value);
 
+/*==== Aditionals prototypes =====*/
+int my_binary(int *array, int initial, int end, int value);
+
 #endif /* __MAIN__ */
