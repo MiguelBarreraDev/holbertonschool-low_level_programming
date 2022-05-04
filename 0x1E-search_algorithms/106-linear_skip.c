@@ -32,7 +32,8 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		head = tail;
 		for (i = 0; tail->next && i < jump; i++)
 			tail = tail->next;
-		head->express = tail;
+		if (head != tail)
+			head->express = tail;
 		printf("Value checked at index [%ld] = [%d]\n", tail->index, tail->n);
 	}
 
